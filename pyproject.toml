@@ -8,10 +8,13 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.11"
-jupyter = "^1.1.1"
 torch = "^2.5.1"
 torchvision = "^0.20.1"
 tqdm = "^4.67.1"
+pandas = "^2.2.3"
+scikit-learn = "^1.6.0"
+matplotlib = "^3.10.0"
+jupyterlab = "^4.3.4"
 
 
 [build-system]
