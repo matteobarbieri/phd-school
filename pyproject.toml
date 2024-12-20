@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "phd-school"
+version = "0.1.0"
+description = ""
+authors = ["Matteo Barbieri <matteo.a.barbieri@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+torch = "^2.5.1"
+torchvision = "^0.20.1"
+tqdm = "^4.67.1"
+pandas = "^2.2.3"
+scikit-learn = "^1.6.0"
+matplotlib = "^3.10.0"
+jupyterlab = "^4.3.4"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
