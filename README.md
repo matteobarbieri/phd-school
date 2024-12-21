@@ -35,6 +35,10 @@ Once you enter the BIOS, you need to find the section where you can enable the v
 
 Install [git](https://git-scm.com/) on your system.
 
+### [Optional, but suggested] Make
+
+Install [make](https://stackoverflow.com/questions/32127524/how-to-install-and-use-make-in-windows) on your system.
+
 ### Clone/Download the repository
 
 Simply clone this repository somewhere in your disk. The command from the terminal/powershell is `git clone https://github.com/matteobarbieri/phd-school.git`
