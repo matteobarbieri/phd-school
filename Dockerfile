@@ -34,4 +34,4 @@ EXPOSE 8888
 
 # Project initialization:
 RUN poetry install $(test "$YOUR_ENV" == prod && echo "--only=main") --no-interaction
-CMD [ "poetry", "run", "jupyter", "notebook" ]
+CMD [ "poetry", "run", "jupyter", "lab" ]
