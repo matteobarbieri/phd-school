@@ -62,7 +62,7 @@ The following instructions assume that you are running the commands from a termi
 From the repository's root folder (the one named `phd-school`):
 
 1. Create a folder named `data` inside folder `home` (`mkdir home/data`)
-1. Enter that folder (`cd data`)
+1. Enter that folder (`cd home/data`)
 1. Download [this](https://www.dropbox.com/scl/fi/n6i5j75j5rgjez27qpw0n/MNIST_CSV.zip?rlkey=vc253rogq2gxdqearqrhv1ytf&dl=0) file in `data`
 1. Extract the file
 
