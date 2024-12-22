@@ -16,6 +16,8 @@ In order to be able to code along the lab sessions, you will need to do some set
 
 Note that most of these steps require an internet connection, so take that into account when planning. The entire process will likely take between 30 and 60 minutes depending on your system, so **plan ahead**.
 
+When referring to commands that need to be entered in a terminal/shell (I use these terms interchangeably), usually they appear in a `monospace font`. In Windows, use the **Powershell** or git bash, if you have it already installed. Otherwise, the "regular" command prompt should be enough. On Linux/OSX, any terminal is fine.
+
 ### Docker Desktop
 
 You need to be able to run _containers_ on your machine. If you haven't already docker installed on your system, you need to set it up now.
@@ -35,13 +37,11 @@ Once you enter the BIOS, you need to find the section where you can enable the v
 
 Install [git](https://git-scm.com/) on your system.
 
-### [Optional, but suggested] Make
-
-Install [make](https://stackoverflow.com/questions/32127524/how-to-install-and-use-make-in-windows) on your system.
-
 ### Clone/Download the repository
 
-Simply clone this repository somewhere in your disk. The command from the terminal/powershell is `git clone https://github.com/matteobarbieri/phd-school.git`
+Simply clone this repository somewhere in your disk. The command from the terminal/powershell is 
+
+`git clone https://github.com/matteobarbieri/phd-school.git`
 
 Alternatively, if you don't have git installed, you can download the repository as a zip file from [this](https://github.com/matteobarbieri/phd-school/archive/refs/heads/main.zip) link.
 
@@ -51,7 +51,11 @@ I prepared a docker image with all the tools installed for this lab session, sin
 
 Once you have set up docker desktop, all you have to do is `pull` the image. The image is a bit big, so make sure you have like 30 GB free on your disk, or you may run into some problems.
 
-From the terminal/powershell, enter command `docker pull matteobarbieri/phdschool`. It may take a while, since the image is a bit big.
+From the terminal/powershell, enter command 
+
+`docker pull matteobarbieri/phdschool`. 
+
+It may take a while, since the image is a bit big.
 
 > TODO change docker image path to local server
 
@@ -61,8 +65,8 @@ The following instructions assume that you are running the commands from a termi
 
 From the repository's root folder (the one named `phd-school`):
 
-1. Create a folder named `data` inside folder `home` (`mkdir home/data`)
-1. Enter that folder (`cd home/data`)
+1. Create a folder named `data` inside folder `home` (shell command: `mkdir home/data`)
+1. Enter that folder (shell command: `cd home/data`)
 1. Download [this](https://www.dropbox.com/scl/fi/n6i5j75j5rgjez27qpw0n/MNIST_CSV.zip?rlkey=vc253rogq2gxdqearqrhv1ytf&dl=0) file in that folder
 1. Extract the file
 
@@ -91,3 +95,7 @@ If you have done everything correctly, it will look somewhat like this:
 > TODO add command line equivalent code
 
 Finally, open a browser and go to address [http://localhost:8000](http://localhost:8000). If everything worked, you should see the home page of the Jupyter environment.
+
+### [Optional, but suggested] Make
+
+Install [make](https://stackoverflow.com/questions/32127524/how-to-install-and-use-make-in-windows) on your system.
