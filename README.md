@@ -63,7 +63,7 @@ From the repository's root folder (the one named `phd-school`):
 
 1. Create a folder named `data` inside folder `home` (`mkdir home/data`)
 1. Enter that folder (`cd home/data`)
-1. Download [this](https://www.dropbox.com/scl/fi/n6i5j75j5rgjez27qpw0n/MNIST_CSV.zip?rlkey=vc253rogq2gxdqearqrhv1ytf&dl=0) file in `data`
+1. Download [this](https://www.dropbox.com/scl/fi/n6i5j75j5rgjez27qpw0n/MNIST_CSV.zip?rlkey=vc253rogq2gxdqearqrhv1ytf&dl=0) file in that folder
 1. Extract the file
 
 If all went well, you should now see the following structure inside the repository's root folder: `home/data/MNIST_CSV`. There should be **2** `.csv` files inside that folder (along with some more stuff): `mnist_test.csv` and `mnist_train.csv`.
