@@ -89,3 +89,5 @@ If you have done everything correctly, it will look somewhat like this:
 ![Docker desktop run container settings](assets/docker_run_optional_settings.png "Docker desktop run container settings")
 
 > TODO add command line equivalent code
+
+Finally, open a browser and go to address [http://localhost:8000](http://localhost:8000). If everything worked, you should see the home page of the Jupyter environment.
