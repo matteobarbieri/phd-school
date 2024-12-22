@@ -57,13 +57,35 @@ From the terminal/powershell, enter command `docker pull matteobarbieri/phdschoo
 
 ### Download data
 
+The following instructions assume that you are running the commands from a terminal.
+
 From the repository's root folder (the one named `phd-school`):
 
-1. Create a folder named `data`
+1. Create a folder named `data` inside folder `home` (`mkdir home/data`)
 1. Enter that folder (`cd data`)
 1. Download [this](https://www.dropbox.com/scl/fi/n6i5j75j5rgjez27qpw0n/MNIST_CSV.zip?rlkey=vc253rogq2gxdqearqrhv1ytf&dl=0) file in `data`
 1. Extract the file
 
-If all went well, you should now see the following structure inside the repository's root folder: `data/MNIST_CSV`. There should be **2** `.csv` files inside that folder (along with some more stuff): `mnist_test.csv` and `mnist_train.csv`.
+If all went well, you should now see the following structure inside the repository's root folder: `home/data/MNIST_CSV`. There should be **2** `.csv` files inside that folder (along with some more stuff): `mnist_test.csv` and `mnist_train.csv`.
 
 > TODO add a python file to check that all files are there
+
+### Start the container
+
+From Docker Desktop's **image** tab, locate the row corresponding to the image you pulled before, it should be named `matteobarbieri/phdschool`. Click on the **Run** button on the right, as shown in the figure below.
+
+![Docker desktop images](assets/docker_desktop_images.png "Docker desktop images tab")
+
+This will open up a menu, click "Optional settings" to reveal more options.
+
+You will need to:
+
+- Enter value `8000` in the **port** field.
+- Under **Volumes** section, click on the three dots in the "Host path" field. Navigate to the repository's folder on your disk, click on the `home` folder inside of it and click button "Select folder".
+- Also under **Volumes**, enter `/workdir/home` in field "Container path".
+
+If you have done everything correctly, it will look somewhat like this:
+
+![Docker desktop run container settings](assets/docker_run_optional_settings.png "Docker desktop run container settings")
+
+> TODO add command line equivalent code
