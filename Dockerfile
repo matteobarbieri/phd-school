@@ -23,15 +23,20 @@ RUN apt update && \
 RUN curl -sSL https://install.python-poetry.org | python -
 
 # Copy only requirements to cache them in docker layer
-WORKDIR /app
+WORKDIR /workdir
 
-ADD download_data.sh /app/
-ADD pyproject.toml /app/
-ADD README.md /app/
-ADD src /app/
+ADD pyproject.toml README.md /workdir/
+
+RUN poetry install --no-directory $(test "$YOUR_ENV" == prod && echo "--only=main") --no-interaction
+
+ADD src /workdir/
 
 EXPOSE 8888
 
 # Project initialization:
 RUN poetry install $(test "$YOUR_ENV" == prod && echo "--only=main") --no-interaction
-CMD [ "poetry", "run", "jupyter", "notebook" ]
+
+WORKDIR /workdir/home
+
+ENTRYPOINT [ "poetry", "run" ]
+CMD [ "jupyter", "lab", "--no-browser", "--allow-root", "--ip", "0.0.0.0", "--NotebookApp.token=''", "--NotebookApp.password=''" ]
