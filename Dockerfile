@@ -25,7 +25,7 @@ RUN curl -sSL https://install.python-poetry.org | python -
 # Copy only requirements to cache them in docker layer
 WORKDIR /workdir
 
-ADD pyproject.toml /workdir/
+ADD pyproject.toml README.md /workdir/
 
 RUN poetry install --no-directory $(test "$YOUR_ENV" == prod && echo "--only=main") --no-interaction
 
