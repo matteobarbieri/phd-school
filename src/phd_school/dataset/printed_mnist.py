@@ -57,22 +57,16 @@ class PrintedMNIST(Dataset):
 
     def __getitem__(self, idx):
 
-        target = random.randint(0, 9)
-
-        size = random.randint(150, 250)
-        x = random.randint(30, 90)
-        y = random.randint(30, 90)
-
         color = random.randint(200, 255)
 
         # Generate image
         img = Image.new("L", (256, 256))
-
+        
         target = random.randint(0, 9)
 
-        size = random.randint(150, 250)
-        x = random.randint(30, 90)
-        y = random.randint(30, 90)
+        size = random.randint(230, 250)
+        x = random.randint(50, 70)
+        y = random.randint(15, 25)
 
         draw = ImageDraw.Draw(img)
         font = ImageFont.truetype(random.choice(self.fonts), size)

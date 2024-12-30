@@ -5,7 +5,7 @@ mkdir -p models
 
 # Download model from dropbox
 wget https://www.dropbox.com/s/t0i4x9bgaml3nra/resnet101_allfonts_mnist.pth?dl=1 \
-    -O models/resnet101_allfonts_mnist.pth
+    -O home/models/resnet101_allfonts_mnist.pth
 
 # Create folder for fonts
 mkdir -p home/fonts

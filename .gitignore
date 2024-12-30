@@ -165,7 +165,8 @@ cython_debug/
 .vscode/
 
 # various folders
-models/
+home/models
 home/fonts
 home/artifacts
 home/data
+home/notebooks_solution/lightning_logs
