@@ -166,6 +166,6 @@ cython_debug/
 
 # various folders
 models/
-fonts/
+home/fonts
 home/artifacts
 home/data
