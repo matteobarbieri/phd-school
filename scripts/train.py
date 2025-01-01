@@ -14,7 +14,7 @@ def main():
     trainer = L.Trainer(max_epochs=2, logger=wandb_logger)
     trainer.fit(model, data)
 
-    model = LitClassification.load_from_checkpoint("best_model.ckpt")
+    # model = LitClassification.load_from_checkpoint("best_model.ckpt")
     
 if __name__ == '__main__':
     main()

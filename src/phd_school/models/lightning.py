@@ -69,13 +69,14 @@ class LitClassification(L.LightningModule):
 class ClassificationData(L.LightningDataModule):
 
     def train_dataloader(self):
-        train_dataset = ManyFontsDigits("../data/printed_digits.csv", transform=train_transform)
+        # train_dataset = ManyFontsDigits("../data/printed_digits.csv", transform=train_transform)
+        train_dataset = ManyFontsDigits("home/data/printed_digits.csv", transform=train_transform)
         # train_dataset = PrintedMNIST(320, -666, transform=train_transform)
         
         return torch.utils.data.DataLoader(train_dataset, batch_size=32, shuffle=True, num_workers=5)
 
     def val_dataloader(self):
         # any iterable or collection of iterables
-        val_dataset = SudokuDigits("../data/sudoku_digits/sudoku_digits.csv", transform=train_transform)
+        val_dataset = SudokuDigits("home/data/sudoku_digits/sudoku_digits.csv", transform=train_transform)
         return torch.utils.data.DataLoader(val_dataset)
     
