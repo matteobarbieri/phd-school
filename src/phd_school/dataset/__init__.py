@@ -1,1 +1,1 @@
-from .printed_mnist import PrintedMNIST, AddGaussianNoise, AddSPNoise
+from .printed_mnist import PrintedMNIST, AddGaussianNoise, AddSPNoise, ManyFontsDigits

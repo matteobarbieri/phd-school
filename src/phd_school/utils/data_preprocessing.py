@@ -212,3 +212,18 @@ def remove_stuff_old(img):
     out = img[i_start:i_end, j_start:j_end]
 
     return out
+
+def slice_grid(grid, i, j, W):
+    """
+    Assuming grid is an array representing the image, return a single square
+    based on its coordinates (which start from 0). 
+    """
+    
+    i_start = i * W
+    i_end = i_start + W
+    
+    j_start = j * W
+    j_end = j_start + W
+        
+    aa = grid[i_start:i_end, j_start:j_end]
+    return aa
