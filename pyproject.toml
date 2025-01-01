@@ -30,6 +30,7 @@ priority = "supplemental"
 
 [tool.poetry.group.dev.dependencies]
 pycairo = "^1.27.0"
+wandb = "^0.19.1"
 
 
 [build-system]

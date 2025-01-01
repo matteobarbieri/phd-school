@@ -1,4 +1,5 @@
 from phd_school.dataset import PrintedMNIST, AddGaussianNoise, AddSPNoise, ManyFontsDigits
+from phd_school.dataset.sudoku_digits import SudokuDigits
 
 import torch
 from timm import create_model
@@ -50,6 +51,13 @@ class LitClassification(L.LightningModule):
         self.log("train_loss", loss)
         return loss
 
+    def validation_step(self, batch):
+        images, targets = batch
+        outputs = self.model(images)
+        loss = self.loss_fn(outputs, targets)
+        self.log("val_loss", loss)
+        return loss
+
     def forward(self, x):
         return self.model(x)
         
@@ -61,9 +69,13 @@ class LitClassification(L.LightningModule):
 class ClassificationData(L.LightningDataModule):
 
     def train_dataloader(self):
-        ManyFontsDigits
         train_dataset = ManyFontsDigits("../data/printed_digits.csv", transform=train_transform)
         # train_dataset = PrintedMNIST(320, -666, transform=train_transform)
         
         return torch.utils.data.DataLoader(train_dataset, batch_size=32, shuffle=True, num_workers=5)
+
+    def val_dataloader(self):
+        # any iterable or collection of iterables
+        val_dataset = SudokuDigits("../data/sudoku_digits/sudoku_digits.csv", transform=train_transform)
+        return torch.utils.data.DataLoader(val_dataset)
     
