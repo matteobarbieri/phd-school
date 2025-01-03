@@ -1,8 +1,8 @@
-from phd_school.dataset import PrintedMNIST, AddGaussianNoise, AddSPNoise, ManyFontsDigits
+# from phd_school.dataset import PrintedMNIST, AddGaussianNoise, AddSPNoise, ManyFontsDigits
+from phd_school.dataset import AddSPNoise, ManyFontsDigits
 from phd_school.dataset.sudoku_digits import SudokuDigits
 
 from torchmetrics.classification import Accuracy
-
 
 import torch
 from timm import create_model
@@ -21,11 +21,12 @@ val_transforms = transforms.Compose([transforms.ToTensor()])
 
 
 class LitClassification(L.LightningModule):
-    def __init__(self):
+    def __init__(self, lr: float = 0.001):
         super().__init__()
         # self.model = create_model('resnet34', num_classes=10)
         self.model = create_model('resnet101', num_classes=10)
 
+        self.lr = lr
 
         # Replace 1st layer to use it on grayscale images
         self.model.conv1 = nn.Conv2d(
@@ -63,7 +64,7 @@ class LitClassification(L.LightningModule):
         _, y_hat = torch.max(outputs, dim=1)
         acc = self.accuracy(y_hat, targets)
 
-        self.log("vall_acc", acc)
+        self.log("val_acc", acc)
 
         self.log("val_loss", loss)
         return loss
@@ -73,7 +74,7 @@ class LitClassification(L.LightningModule):
         
 
     def configure_optimizers(self):
-        return torch.optim.AdamW(self.model.parameters(), lr=0.005)
+        return torch.optim.AdamW(self.model.parameters(), lr=self.lr)
     
     
 class ClassificationData(L.LightningDataModule):
