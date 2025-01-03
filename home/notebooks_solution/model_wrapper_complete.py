@@ -47,18 +47,19 @@ class TrainedSklearnModelWrapper(TrainedModelWrapper):
 
 class TrainedTorchModelWrapper(TrainedModelWrapper):
 
-    def __init__(self, model, conf_threshold=0.9, device="cpu"):
+    def __init__(self, model, conf_threshold=0.5, device="cpu"):
         self.model = model
         self.conf_threshold = conf_threshold
         self.device = device
 
     def predictOne(self, X: np.ndarray) -> float | int:
         """
-        Assumes X has shape (n, p), where n is the number of samples and p the number of features
+        Assumes X has shape (d, d), i.e. a square image
         """
 
         self.model.eval()
-        iii = torch.Tensor(X).to(self.device).unsqueeze(0).unsqueeze(0)
+        # Must be normalized
+        iii = torch.Tensor(X).to(self.device).unsqueeze(0).unsqueeze(0)/255
     
         with torch.no_grad():
             out = self.model(iii)
@@ -73,11 +74,7 @@ class TrainedTorchModelWrapper(TrainedModelWrapper):
         digit = P.item()
         conf = sm.squeeze()[digit].item()
 
-        return digit
-
-        
-
-        # if digit != 0 and conf > self.conf_threshold:
-        #     return str(digit)
-        # else:
-        #     return " "
+        if conf < self.conf_threshold:
+            return 0
+        else:
+            return digit
