@@ -3,18 +3,16 @@ import lightning as L
 
 from lightning.pytorch.loggers import WandbLogger
 
+import fire
 
-
-def main():
+def train(max_epochs: int = 15):
 
     model = LitClassification()
     data = ClassificationData()
 
     wandb_logger = WandbLogger(log_model="all")
-    trainer = L.Trainer(max_epochs=2, logger=wandb_logger)
+    trainer = L.Trainer(max_epochs=max_epochs, logger=wandb_logger)
     trainer.fit(model, data)
 
-    # model = LitClassification.load_from_checkpoint("best_model.ckpt")
-    
 if __name__ == '__main__':
-    main()
+    fire.Fire(train)

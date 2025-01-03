@@ -1,6 +1,9 @@
 from phd_school.dataset import PrintedMNIST, AddGaussianNoise, AddSPNoise, ManyFontsDigits
 from phd_school.dataset.sudoku_digits import SudokuDigits
 
+from torchmetrics.classification import Accuracy
+
+
 import torch
 from timm import create_model
 from torchvision import transforms, datasets
@@ -17,18 +20,11 @@ train_transform = transforms.Compose([
 val_transforms = transforms.Compose([transforms.ToTensor()])
 
 
-# DEFAULT_TRANSFORM = transforms.Compose([
-#     transforms.ToTensor(),
-#     transforms.Resize((224, 224)),
-#     transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
-# ])
-
 class LitClassification(L.LightningModule):
     def __init__(self):
         super().__init__()
         # self.model = create_model('resnet34', num_classes=10)
         self.model = create_model('resnet101', num_classes=10)
-
 
 
         # Replace 1st layer to use it on grayscale images
@@ -44,17 +40,31 @@ class LitClassification(L.LightningModule):
         
         self.loss_fn = torch.nn.CrossEntropyLoss()
 
+        self.accuracy = Accuracy(task="multiclass", num_classes=10)
+
     def training_step(self, batch):
         images, targets = batch
         outputs = self.model(images)
         loss = self.loss_fn(outputs, targets)
+        
+        _, y_hat = torch.max(outputs, dim=1)
+        acc = self.accuracy(y_hat, targets)
+
         self.log("train_loss", loss)
+        self.log("train_acc", acc)
+
         return loss
 
     def validation_step(self, batch):
         images, targets = batch
         outputs = self.model(images)
         loss = self.loss_fn(outputs, targets)
+
+        _, y_hat = torch.max(outputs, dim=1)
+        acc = self.accuracy(y_hat, targets)
+
+        self.log("vall_acc", acc)
+
         self.log("val_loss", loss)
         return loss
 
@@ -73,10 +83,10 @@ class ClassificationData(L.LightningDataModule):
         train_dataset = ManyFontsDigits("home/data/printed_digits.csv", transform=train_transform)
         # train_dataset = PrintedMNIST(320, -666, transform=train_transform)
         
-        return torch.utils.data.DataLoader(train_dataset, batch_size=32, shuffle=True, num_workers=5)
+        return torch.utils.data.DataLoader(train_dataset, batch_size=32, shuffle=True, num_workers=7)
 
     def val_dataloader(self):
         # any iterable or collection of iterables
-        val_dataset = SudokuDigits("home/data/sudoku_digits/sudoku_digits.csv", transform=train_transform)
-        return torch.utils.data.DataLoader(val_dataset)
+        val_dataset = SudokuDigits("home/data/sudoku_digits/sudoku_digits.csv", transform=val_transforms)
+        return torch.utils.data.DataLoader(val_dataset, num_workers=7)
     
