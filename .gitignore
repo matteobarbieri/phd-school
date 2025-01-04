@@ -170,3 +170,6 @@ home/fonts
 home/artifacts
 home/data
 home/notebooks_solution/lightning_logs
+
+# mac stuff
+.DS_Store
