@@ -9,6 +9,9 @@ from PIL import ImageDraw
 import glob
 import random
 
+import base64
+import io
+
 
 class AddSPNoise(object):
     def __init__(self, prob):
@@ -57,28 +60,49 @@ class PrintedMNIST(Dataset):
 
     def __getitem__(self, idx):
 
-        target = random.randint(0, 9)
-
-        size = random.randint(150, 250)
-        x = random.randint(30, 90)
-        y = random.randint(30, 90)
-
         color = random.randint(200, 255)
 
         # Generate image
         img = Image.new("L", (256, 256))
-
+        
         target = random.randint(0, 9)
 
-        size = random.randint(150, 250)
-        x = random.randint(30, 90)
-        y = random.randint(30, 90)
+        size = random.randint(230, 250)
+        x = random.randint(50, 70)
+        y = random.randint(15, 25)
 
         draw = ImageDraw.Draw(img)
         font = ImageFont.truetype(random.choice(self.fonts), size)
         draw.text((x, y), str(target), color, font=font)
 
         img = img.resize((28, 28), Image.BILINEAR)
+
+        if self.transform:
+            img = self.transform(img)
+
+        return img, target
+
+
+import pandas as pd
+
+def base64ToPIL(x):
+	return Image.open(io.BytesIO(base64.b64decode(x.encode())))
+
+class ManyFontsDigits(Dataset):
+    
+    def __init__(self, csv_path, transform=None):
+        """"""
+        self.transform = transform
+        
+        self.df = pd.read_csv(csv_path, header=None, names=['font', 'target', 'base64'])
+
+    def __len__(self):
+        return len(self.df)
+
+    def __getitem__(self, idx):
+
+        img = base64ToPIL(self.df['base64'][idx])
+        target = int(self.df['target'][idx])
 
         if self.transform:
             img = self.transform(img)

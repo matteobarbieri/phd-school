@@ -165,7 +165,11 @@ cython_debug/
 .vscode/
 
 # various folders
-models/
-fonts/
+home/models
+home/fonts
 home/artifacts
 home/data
+home/notebooks_solution/lightning_logs
+
+# mac stuff
+.DS_Store
