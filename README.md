@@ -78,7 +78,11 @@ If all went well, you should now see the following structure inside the reposito
 
 I will include those files in the machine we'll be using for the lab, but you may have to do some extra work in that case...
 
-> TODO add a python file to check that all files are there
+You can run script `check_files.sh` to make sure that all files have been downloaded and placed in the right place.
+
+```
+./check_files.sh
+```
 
 ### Start the container
 
