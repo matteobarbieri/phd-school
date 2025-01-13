@@ -30,6 +30,7 @@ ADD pyproject.toml README.md /workdir/
 RUN poetry install --no-directory $(test "$YOUR_ENV" == prod && echo "--only=main") --no-interaction
 
 ADD src /workdir/
+ADD scripts /workdir/
 
 EXPOSE 8888
 
