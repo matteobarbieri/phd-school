@@ -19,12 +19,13 @@ ipywidgets = "^8.1.5"
 lightning = "^2.5.0.post0"
 timm = "^1.0.12"
 fire = "^0.7.0"
+gradio = "^5.12.0"
 
 
-[[tool.poetry.source]]
-name = "pytorch"
-url = "https://download.pytorch.org/whl/cu124"
-priority = "supplemental"
+# [[tool.poetry.source]]
+# name = "pytorch"
+# url = "https://download.pytorch.org/whl/cu124"
+# priority = "supplemental"
 
 
 [tool.poetry.group.dev.dependencies]
@@ -32,9 +33,9 @@ priority = "supplemental"
 wandb = "^0.19.1"
 
 
-[tool.poetry.group.cuda.dependencies]
-torch = {version = "^2.5.1+cu124", source = "pytorch"}
-torchvision = {version = "^0.20.1+cu124", source = "pytorch"}
+# [tool.poetry.group.cuda.dependencies]
+# torch = {version = "^2.5.1+cu124", source = "pytorch"}
+# torchvision = {version = "^0.20.1+cu124", source = "pytorch"}
 
 [tool.poetry.group.nocuda.dependencies]
 torch = "^2.5.1"
