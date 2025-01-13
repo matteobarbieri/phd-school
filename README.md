@@ -61,16 +61,22 @@ It may take a while, since the image is a bit big.
 
 ### Download data
 
-The following instructions assume that you are running the commands from a terminal.
+**IMPORTANT**: The following instructions assume that you are running the commands from a terminal.
 
-From the repository's root folder (the one named `phd-school`):
+From the repository's root folder (the one named `phd-school`), run script `download_data.sh` using the following command
 
-1. Create a folder named `data` inside folder `home` (shell command: `mkdir home/data`)
-1. Enter that folder (shell command: `cd home/data`)
-1. Download [this](https://www.dropbox.com/scl/fi/n6i5j75j5rgjez27qpw0n/MNIST_CSV.zip?rlkey=vc253rogq2gxdqearqrhv1ytf&dl=0) file in that folder
-1. Extract the file
+```
+./download_data.sh
+```
 
-If all went well, you should now see the following structure inside the repository's root folder: `home/data/MNIST_CSV`. There should be **2** `.csv` files inside that folder (along with some more stuff): `mnist_test.csv` and `mnist_train.csv`.
+(the `./` is required).
+
+If all went well, you should now see the following structure inside the repository's root folder:
+- **2** `.csv` files in `home/data/MNIST_CSV` (along with some more stuff): `mnist_test.csv` and `mnist_train.csv`.
+- A file named `best_candidate.ckpt` in `home/models`
+- A file named `Helvetica-Bold-Font.ttf` in `home/fonts`
+
+I will include those files in the machine we'll be using for the lab, but you may have to do some extra work in that case...
 
 > TODO add a python file to check that all files are there
 
