@@ -8,3 +8,7 @@ build:
 .PHONY: jupyter
 jupyter:
 	poetry run jupyter lab
+
+.PHONY: gradio
+gradio:
+	poetry run gradio scripts/app.py
