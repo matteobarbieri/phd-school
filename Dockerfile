@@ -17,7 +17,7 @@ ENV YOUR_ENV=prod \
 
 RUN apt update && \
     apt upgrade -y && \
-    apt install -y curl
+    apt install -y curl ffmpeg libsm6 libxext6
 
 # System deps:
 RUN curl -sSL https://install.python-poetry.org | python -
@@ -27,7 +27,9 @@ WORKDIR /workdir
 
 ADD pyproject.toml README.md /workdir/
 
-RUN poetry install --no-directory $(test "$YOUR_ENV" == prod && echo "--only=main") --no-interaction
+# RUN poetry install --no-directory $(test "$YOUR_ENV" == prod && echo "--only=main") --no-interaction
+
+RUN poetry install --no-directory --with nocuda  --no-interaction
 
 ADD src /workdir/
 ADD scripts /workdir/
