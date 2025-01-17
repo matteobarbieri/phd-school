@@ -75,6 +75,7 @@ If all went well, you should now see the following structure inside the reposito
 - **2** `.csv` files in `home/data/MNIST_CSV` (along with some more stuff): `mnist_test.csv` and `mnist_train.csv`.
 - A file named `best_candidate.ckpt` in `home/models`
 - A file named `Helvetica-Bold-Font.ttf` in `home/fonts`
+- Files `challenge_train.csv` and `challenge_test.csv` in `home/data/challenge`
 
 I will include those files in the machine we'll be using for the lab, but you may have to do some extra work in that case...
 
