@@ -53,9 +53,19 @@ Once you have set up docker desktop, all you have to do is `pull` the image. The
 
 From the terminal/powershell, enter command 
 
-`docker pull matteobarbieri/phdschool`. 
+`docker pull matteobarbieri/phdschool:win`
+
+if you're on windows or linux, or 
+
+`docker pull matteobarbieri/phdschool:mac`
+
+if you're on a mac
 
 It may take a while, since the image is a bit big.
+
+Note: I may be able to add another image specifically for linux, but I'm not sure. In that case, you will pull it with
+
+`docker pull matteobarbieri/phdschool:linux`
 
 > TODO change docker image path to local server
 
